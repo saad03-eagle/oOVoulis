@@ -1,0 +1,589 @@
+               :root {
+                  --primary: #4361ee;
+                  --primary-light: #4895ef;
+                  --success: #2ec4b6;
+                  --danger: #e71d36;
+                  --dark: #011627;
+                  --white: #ffffff;
+                  --bg: #f4f7f6;
+                  --gray: #64748b;
+                  --shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+              }
+              
+              * {
+                  margin: 0;
+                  padding: 0;
+                  box-sizing: border-box;
+                  font-family: 'Cairo', sans-serif;
+              }
+              
+              body {
+                  background: var(--bg);
+                  color: var(--dark);
+                  direction: rtl;
+                  scroll-behavior: smooth;
+              }
+              /* واجهة الدخول */
+              
+              #loginOverlay {
+                  position: fixed;
+                  inset: 0;
+                  background: radial-gradient(circle at center, #022c4d 0%, var(--dark) 100%);
+                  display: flex;
+                  align-items: center;
+                  justify-content: center;
+                  z-index: 9999;
+              }
+              
+              .login-box {
+                  background: var(--white);
+                  padding: 40px;
+                  border-radius: 25px;
+                  text-align: center;
+                  width: 350px;
+                  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
+                  transform: translateY(0);
+                  transition: transform 0.4s ease;
+              }
+              
+              .login-box:hover {
+                  transform: translateY(-5px);
+              }
+              
+              .login-logo {
+                  max-width: 200px;
+                  height: auto;
+                  margin-bottom: 20px;
+                  display: block;
+                  margin-left: auto;
+                  margin-right: auto;
+                  filter: drop-shadow(0 4px 6px rgba(0, 0, 0, 0.1));
+                  transition: transform 0.3s ease;
+              }
+              
+              .login-logo:hover {
+                  transform: scale(1.05);
+              }
+              /* شريط التنقل */
+              
+              .main-nav {
+                  background: rgba(255, 255, 255, 0.95);
+                  backdrop-filter: blur(10px);
+                  padding: 10px;
+                  position: sticky;
+                  top: 0;
+                  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+                  z-index: 100;
+              }
+              
+              .nav-container {
+                  max-width: 1200px;
+                  margin: auto;
+                  display: flex;
+                  justify-content: space-between;
+                  align-items: center;
+              }
+              
+              .logo-text {
+                  font-weight: 900;
+                  color: var(--primary);
+                  font-size: 1.2rem;
+                  text-transform: uppercase;
+              }
+              
+              .nav-links {
+                  display: flex;
+                  list-style: none;
+                  gap: 10px;
+              }
+              
+              .nav-links li {
+                  padding: 10px 15px;
+                  border-radius: 12px;
+                  cursor: pointer;
+                  font-weight: bold;
+                  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+              }
+              
+              .nav-links li:hover {
+                  background: #f0f3ff;
+                  color: var(--primary);
+              }
+              
+              .nav-links li.active {
+                  background: var(--primary);
+                  color: white;
+                  box-shadow: 0 4px 15px rgba(67, 97, 238, 0.3);
+              }
+              /* الصفحات والبطاقات */
+              
+              .container {
+                  max-width: 1200px;
+                  margin: 20px auto;
+                  padding: 0 15px;
+              }
+              
+              .page {
+                  display: none;
+                  animation: fadeIn 0.5s ease-out;
+              }
+              /* تغيير الماوس وتأثير الضغط */
+              
+              .w-opt {
+                  cursor: pointer !important;
+                  /* شكل اليد */
+                  padding: 12px 15px;
+                  margin: 8px 0;
+                  border-radius: 10px;
+                  background: #f8fafc;
+                  border: 1px solid #e2e8f0;
+                  transition: all 0.1s ease;
+                  /* سرعة الاستجابة للضغط */
+                  user-select: none;
+                  display: flex;
+                  justify-content: space-between;
+                  align-items: center;
+              }
+              /* تأثير عند مرور الماوس */
+              
+              .w-opt:hover {
+                  background-color: #f1f5f9;
+                  border-color: var(--primary);
+              }
+              /* تأثير الضغط (النبض للداخل) */
+              
+              .w-opt:active {
+                  transform: scale(0.94);
+                  /* تصغير الحجم عند النقر */
+                  background-color: #e2e8f0;
+              }
+              /* العامل المختار */
+              
+              .w-opt.selected {
+                  background-color: var(--primary) !important;
+                  color: white !important;
+                  font-weight: bold;
+                  box-shadow: 0 4px 10px rgba(67, 97, 238, 0.2);
+              }
+              /* علامة الصح للمختار */
+              
+              .w-opt.selected::after {
+                  content: "✓";
+              }
+              
+              @keyframes fadeIn {
+                  from {
+                      opacity: 0;
+                      transform: translateY(10px);
+                  }
+                  to {
+                      opacity: 1;
+                      transform: translateY(0);
+                  }
+              }
+              
+              .page.active {
+                  display: block;
+              }
+              
+              .card {
+                  background: rgb(156, 144, 211);
+                  padding: 25px;
+                  border-radius: 20px;
+                  box-shadow: var(--shadow);
+                  margin-bottom: 25px;
+                  border: 1px solid rgba(0, 0, 0, 0.02);
+              }
+              /* الجداول والفورم */
+              
+              input,
+              select {
+                  padding: 12px;
+                  border: 1px solid #e2e8f0;
+                  border-radius: 10px;
+                  outline: none;
+                  font-family: 'Cairo';
+                  transition: border-color 0.3s, box-shadow 0.3s;
+              }
+              
+              input:focus,
+              select:focus {
+                  border-color: var(--primary);
+                  box-shadow: 0 0 0 3px rgba(67, 97, 238, 0.1);
+              }
+              
+              .stat-card {
+                  background: white;
+                  padding: 30px;
+                  border-radius: 20px;
+                  text-align: center;
+                  border-bottom: 5px solid var(--primary);
+                  transition: all 0.3s ease;
+              }
+              
+              .stat-card:hover {
+                  transform: translateY(-5px);
+                  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.05);
+              }
+              
+              .worker-card {
+                  background: rgb(122, 200, 245);
+                  padding: 15px;
+                  border-radius: 15px;
+                  display: flex;
+                  justify-content: space-between;
+                  align-items: center;
+                  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+                  transition: 0.3s;
+              }
+              
+              .worker-card:hover {
+                  border-right: 4px solid var(--primary);
+                  background: #8598e4;
+              }
+              
+              table {
+                  width: 100%;
+                  border-collapse: collapse;
+                  /* تغيير من separate إلى collapse لدمج الخطوط */
+                  margin-bottom: 10px;
+                  background: white;
+                  border-radius: 12px;
+                  overflow: hidden;
+                  border: 1px solid #131402;
+                  /* إطار خارجي للجدول */
+              }
+              
+              th {
+                  background: #f8fafc;
+                  font-weight: bold;
+                  color: var(--gray);
+                  padding: 12px;
+                  border: 1px solid #131402;
+                  /* خطوط عمودية وأفقية للعناوين */
+              }
+              
+              td {
+                  border: 1px solid #131402;
+                  /* هذا هو السطر المسؤول عن إضافة خطوط الطول والعرض */
+                  padding: 12px;
+                  text-align: center;
+              }
+              /* الملاحظات */
+              
+              .notes-container {
+                  margin-top: 20px;
+                  padding: 15px;
+                  background: #f0fdfa;
+                  border: 2px solid var(--success);
+                  border-radius: 12px;
+                  transition: all 0.3s ease;
+              }
+              
+              .notes-container:focus-within {
+                  box-shadow: 0 0 0 4px rgba(46, 196, 182, 0.1);
+              }
+              
+              .notes-box {
+                  min-height: 80px;
+                  width: 100%;
+                  padding: 10px;
+                  background: white;
+                  border: 1px dashed var(--success);
+                  border-radius: 8px;
+                  outline: none;
+                  resize: vertical;
+              }
+              /* الأزرار */
+              
+              .btn {
+                  border: none;
+                  border-radius: 10px;
+                  cursor: pointer;
+                  font-weight: bold;
+                  padding: 12px 20px;
+                  text-align: center;
+                  display: inline-block;
+                  transition: 0.3s;
+              }
+              
+              .btn:active {
+                  transform: scale(0.96);
+              }
+              
+              .btn-primary {
+                  background: var(--primary);
+                  color: white;
+                  box-shadow: 0 4px 6px rgba(67, 97, 238, 0.2);
+              }
+              
+              .btn-primary:hover {
+                  background: var(--primary-light);
+                  box-shadow: 0 6px 15px rgba(67, 97, 238, 0.3);
+              }
+              /* المودال */
+              
+              .overlay {
+                  position: fixed;
+                  inset: 0;
+                  background: rgba(1, 22, 39, 0.7);
+                  backdrop-filter: blur(4px);
+                  display: none;
+                  z-index: 1000;
+              }
+              
+              .modal {
+                  position: fixed;
+                  top: 50%;
+                  left: 50%;
+                  transform: translate(-50%, -50%);
+                  background: white;
+                  padding: 25px;
+                  border-radius: 20px;
+                  width: 90%;
+                  max-width: 450px;
+                  display: none;
+                  z-index: 1001;
+                  animation: modalSlide 0.3s ease-out;
+              }
+              
+              @keyframes modalSlide {
+                  from {
+                      opacity: 0;
+                      transform: translate(-50%, -60%);
+                  }
+                  to {
+                      opacity: 1;
+                      transform: translate(-50%, -50%);
+                  }
+              }
+              /* إعدادات الطباعة */
+              
+              @media print {
+                  @page {
+                      size: A3 landscape;
+                      margin: 1cm;
+                  }
+                  .no-print,
+                  nav,
+                  .card,
+                  .selectors,
+                  #loginOverlay,
+                  #navbar,
+                  button {
+                      display: none !important;
+                  }
+                  #farmMainTitle {
+                      display: block !important;
+                      font-size: 40px !important;
+                      text-align: center;
+                      font-weight: 900;
+                      margin-bottom: 20px !important;
+                      color: #251e1e;
+                      border-bottom: 4px solid #4361ee;
+                  }
+                  .workers-line-report {
+                      display: flex !important;
+                      justify-content: center;
+                      gap: 40px;
+                      margin-bottom: 20px !important;
+                      padding: 10px;
+                      border: 2px solid #a53e3e;
+                  }
+                  /* تنسيق الجدول العام لضمان ظهور خطوط الطول والعرض */
+                  table {
+                      width: 100%;
+                      border-collapse: collapse;
+                      /* ضروري جداً لدمج الخطوط ومنع الفراغات */
+                      margin-bottom: 10px;
+                      background: white;
+                      border: 2px solid #000;
+                      /* الإطار الخارجي الأسود للجدول */
+                  }
+                  th {
+                      background: #f8fafc;
+                      font-weight: bold;
+                      color: var(--gray);
+                      padding: 12px;
+                      border: 1px solid #000;
+                      /* خطوط طول وعرض للعناوين */
+                  }
+                  /* حل مشكلة ترتيب العمال: واحد تحت الآخر */
+                  td {
+                      border: 1px solid #131402;
+                      /* إضافة خطوط الطول والعرض */
+                      padding: 10px;
+                      text-align: center;
+                      vertical-align: middle;
+                  }
+                  /* تنسيق الحاوية لتجعل العمال يترتبون عمودياً */
+                  td span.worker-tag {
+                      display: block;
+                      /* يجعل كل اسم في سطر جديد */
+                      margin: 4px auto;
+                      /* مسافة بين الأسماء وتوسيطها */
+                      width: fit-content;
+                      /* جعل الوسم على قدر حجم الاسم فقط */
+                      min-width: 80px;
+                      /* لتوحيد عرض الأوسمة */
+                      padding: 4px 10px;
+                      border-radius: 6px;
+                      color: white;
+                      font-weight: bold;
+                      font-size: 0.85rem;
+                  }
+                  /* تعديل إعدادات الجدول لضمان انغلاق الخطوط */
+                  /* --- إصلاح الجدول العام وخطوط الطول --- */
+                  table {
+                      width: 100%;
+                      border-collapse: collapse !important;
+                      /* دمج الحدود لمنع الفجوات الجانبية */
+                      margin-bottom: 15px;
+                      background: white;
+                      border: 2px solid #131402 !important;
+                      /* الإطار الخارجي الأسود */
+                  }
+                  th,
+                  td {
+                      border: 1px solid #131402 !important;
+                      /* خطوط الطول والعرض لجميع الخلايا */
+                      padding: 10px;
+                      text-align: center;
+                      vertical-align: middle;
+                  }
+                  th {
+                      background: #f8fafc;
+                      font-weight: bold;
+                      color: #64748b;
+                  }
+                  /* تنسيق الجدول العام لضمان ظهور خطوط الطول والعرض */
+                  table {
+                      width: 100%;
+                      border-collapse: collapse;
+                      /* ضروري جداً لدمج الخطوط ومنع الفراغات */
+                      margin-bottom: 10px;
+                      background: white;
+                      border: 2px solid #000;
+                      /* الإطار الخارجي الأسود للجدول */
+                  }
+                  th {
+                      background: #f8fafc;
+                      font-weight: bold;
+                      color: var(--gray);
+                      padding: 12px;
+                      border: 1px solid #000;
+                      /* خطوط طول وعرض للعناوين */
+                  }
+                  td {
+                      padding: 12px;
+                      text-align: center;
+                      border: 1px solid #000;
+                      /* هذا السطر هو الذي يضيف خطوط الطول التي كانت تنقصك */
+                  }
+                  /* إعدادات الطباعة لضمان الوضوح التام */
+                  @media print {
+                      .report-table {
+                          border-collapse: collapse !important;
+                          border: 2px solid #000 !important;
+                      }
+                      .report-table th,
+                      .report-table td {
+                          border: 1px solid #000 !important;
+                          /* يضمن ظهور الخطوط العمودية السوداء */
+                          color: #000 !important;
+                      }
+                  }
+                  /* --- إصلاح ظهور العمال: واحد تحت الآخر --- */
+                  .worker-tag {
+                      display: block !important;
+                      /* جعل كل اسم في سطر منفصل */
+                      margin: 4px auto !important;
+                      padding: 5px 10px;
+                      border-radius: 6px;
+                      color: white !important;
+                      font-weight: bold;
+                      font-size: 0.85rem;
+                      width: fit-content;
+                      min-width: 90px;
+                      text-align: center;
+                  }
+                  /* --- إصلاح كود الطباعة (حذف الخطأ المطبعي) --- */
+                  @media print {
+                      .report-table {
+                          border-collapse: collapse !important;
+                          border: 2px solid #000 !important;
+                      }
+                      .report-table th,
+                      .report-table td {
+                          border: 1px solid #000 !important;
+                          color: #000 !important;
+                      }
+                      .no-print {
+                          display: none !important;
+                      }
+                      .print-only {
+                          display: block !important;
+                      }
+                  }
+                  .notes-container {
+                      border: 1px dashed #000 !important;
+                      background: transparent !important;
+                      height: auto;
+                      min-height: 60px;
+                      margin-top: 10px;
+                      padding: 10px;
+                  }
+                  .notes-box {
+                      border: 1px dashed #000 !important;
+                      background: transparent !important;
+                      height: auto;
+                      min-height: 40px;
+                  }
+              }
+              /* تنسيق جدول الغياب */
+              
+              .absence-table {
+                  width: 100%;
+                  margin-top: 20px;
+                  border-collapse: collapse;
+                  border: 2px solid #000;
+              }
+              
+              .absence-table th {
+                  background: #f1f5f9;
+                  color: #334155;
+                  border: 1px solid #000;
+              }
+              
+              .absence-table td {
+                  border: 1px solid #000;
+                  padding: 10px;
+              }
+              /* تمييز خانة التعويض في الطباعة */
+              
+              .replacement-text {
+                  font-size: 0.8rem;
+                  color: #4361ee;
+                  font-weight: bold;
+                  display: block;
+                  margin-top: 5px;
+                  border-top: 1px dashed #ccc;
+              }
+              
+              @media print {
+                  .absence-section {
+                      page-break-before: always;
+                      /* يبدأ جدول الغياب في صفحة جديدة عند الطباعة */
+                      display: block !important;
+                  }
+              }
+              
+              .worker-tag {
+                  display: inline-block;
+                  margin: 2px;
+                  padding: 4px 8px;
+                  border-radius: 6px;
+                  color: white;
+                  font-weight: bold;
+                  font-size: 0.85rem;
+              }
